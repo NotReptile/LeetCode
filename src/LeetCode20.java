@@ -1,33 +1,40 @@
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.Scanner;
 
 public class LeetCode20 {
     HashMap <Character,Integer> hashMap = new HashMap<>();
+    LinkedList<Integer> indexList = new LinkedList<>();
     private int k =0;
     public void setHashMap(){
         hashMap.put('(',1);
-        hashMap.put(')',9);
+        hashMap.put(')',-1);
         hashMap.put('{',2);
-        hashMap.put('}',8);
+        hashMap.put('}',-2);
         hashMap.put('[',3);
-        hashMap.put(']',7);
+        hashMap.put(']',-3);
     }
     public boolean isValid(String s) {
-        if (hashMap.get(s.charAt(0)) == 9
-                    || hashMap.get(s.charAt(0)) == 8
-                    || hashMap.get(s.charAt(0)) == 7)
-            return false;
-        if (hashMap.get(s.charAt(s.length() - 1)) == 1
-                    || hashMap.get(s.charAt(s.length() - 1)) == 2
-                    || hashMap.get(s.charAt(s.length() - 1)) == 3)
+        if (hashMap.get(s.charAt(0)) < 0 || hashMap.get(s.charAt(s.length() - 1)) > 0)
             return false;
         if (s.length() % 2 != 0)
             return false;
         else {
             for (int i = 0; i < s.length(); i++) {
                 k = k + hashMap.get(s.charAt(i));
+                if (hashMap.get(s.charAt(i)) > 0){
+                    indexList.add(i);
+                }
+                if (hashMap.get(s.charAt(i)) < 0) {
+                    if (indexList.isEmpty())
+                        return false;
+                    if (Math.abs(hashMap.get(s.charAt(i))) != Math.abs(hashMap.get(s.charAt(indexList.pollLast())))){
+                        return false;
+                    }
+                }
             }
-            return k % 10 == 0;
+            return k == 0;
         }
     }
 
