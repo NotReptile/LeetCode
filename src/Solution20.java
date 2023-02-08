@@ -1,9 +1,8 @@
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Scanner;
 
-public class LeetCode20 {
+public class Solution20 {
     HashMap <Character,Integer> hashMap = new HashMap<>();
     LinkedList<Integer> indexList = new LinkedList<>();
     private int k =0;
@@ -37,16 +36,15 @@ public class LeetCode20 {
             return k == 0;
         }
     }
-
     public static void main(String[] args) {
-        LeetCode20 leetCode20 = new LeetCode20();
+        Solution20 leetCode20 = new Solution20();
         leetCode20.setHashMap();
         Scanner scanner = new Scanner(System.in);
         String s = scanner.nextLine();
         try {
             System.out.println(leetCode20.isValid(s));
         } catch (Exception e){
-            System.out.println("Wrong Input");
+            System.out.println("Error");
         }
     }
 }
