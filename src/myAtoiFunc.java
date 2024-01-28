@@ -9,7 +9,7 @@ public class myAtoiFunc {
         Collections.addAll(numbers, chars);
         int x = 0;
         StringBuilder c = new StringBuilder();
-        if(s.length() == 0)
+        if(s.isEmpty())
             return 0;
         for (int i = 0; i <s.length(); i++){
             if (s.charAt(i) != ' ' && numbers.contains(s.charAt(i)))
